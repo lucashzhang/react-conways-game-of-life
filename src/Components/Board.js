@@ -1,47 +1,66 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { GridList, GridListTile, Button } from '@material-ui/core';
-import { changeBoardTile } from '../ReduxUtil/actions';
+import { Button } from '@material-ui/core';
+import { updateBoard } from '../ReduxUtil/actions';
+import updateGame from '../GameUtil'
 
 class Board extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            interval: null,
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.isRunning != this.props.isRunning && this.props.isRunning) {
+            this.setState({
+                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), 50)
+            })
+        } else if (!this.props.isRunning) {
+            clearInterval(this.state.interval)
+        }
+    }
+
+    updateBoard(board, gridSize) {
+        const newBoard = updateGame(board, gridSize)
+        this.props.updateBoard(newBoard)
+    }
+
+    handleButtonClick(i) {
+        let newBoard = [...this.props.board];
+        newBoard[i] = !newBoard[i]
+        this.props.updateBoard(newBoard)
+    }
+
     render() {
-        return <GridList cols={100} rows={100} style={{width: "100vh"}}>
+        return <div style={{ width: "100vh" }}>
             {this.props.board.map((tile, i) => (
-                <GridListTile key={i} style={{width: "10vh", height:"10vh"}}>
-                    <Button variant="contained" style={{
-                        height: "100%",
-                        width: "100%"
-                    }}
+                <Button variant="contained" style={{
+                    height: "10vh",
+                    width: "10vh"
+                }}
                     color={this.props.board[i] ? "primary" : "default"}
-                    onClick={()=>this.props.onButtonClick(i, this.props.board)}>{i}</Button>
-                </GridListTile>
+                    onClick={() => this.handleButtonClick(i)}>{i}</Button>
             ))}
-        </GridList>
+        </div>
     }
 }
 
-{/* <GridListTile key={i}
-    onClick={() => this.props.onButtonClick(i, this.props.board)}
-    style={{
-        backgroundColor: this.props.board[i] ? "grey" : "white",
-        borderColor: "black",
-        borderStyle: "dotted",
-        height: "100px",
-        width: "100px"
-    }}>
-</GridListTile> */}
-
 const mapStateToProps = state => {
     return {
-        board: state.board
+        board: state.board.boardTiles,
+        gridSize: state.board.gridSize,
+        isRunning: state.startstop
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onButtonClick(index, board) {
+        updateBoard(board) {
             dispatch(
-                changeBoardTile(index, board)
+                updateBoard(board)
             )
         }
     }

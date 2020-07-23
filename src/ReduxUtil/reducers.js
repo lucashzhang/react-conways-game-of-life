@@ -10,10 +10,18 @@ export const startstop = (state = false, action) => {
     }
 }
 
-export const board = (state = new Array(100).fill(false), action) => {
+export const boardTiles = (state = new Array(100).fill(false), action) => {
     switch (action.type) {
-        case C.CHANGE_BOARD:
         case C.UPDATE_BOARD:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const gridSize = (state = 10, action) => {
+    switch (action.type) {
+        case C.UPDATE_SIZE:
             return action.payload;
         default:
             return state;
@@ -22,5 +30,8 @@ export const board = (state = new Array(100).fill(false), action) => {
 
 export default combineReducers({
     startstop,
-    board
+    board: combineReducers({
+        boardTiles,
+        gridSize
+    })
 })

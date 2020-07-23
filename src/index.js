@@ -14,10 +14,7 @@ window.store = store;
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <div style={{display: "flex", flexDirection: "row"}}>
-        <Board />
-        <Menu />
-      </div>
+      <App/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
