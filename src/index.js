@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './CSS/index.css';
 import App from './Components/App';
+import Board from './Components/Board'
+import Menu from './Components/Menu'
 import * as serviceWorker from './serviceWorker';
 import initStore from './ReduxUtil';
 import { Provider } from 'react-redux';
@@ -12,7 +14,10 @@ window.store = store;
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <div style={{display: "flex", flexDirection: "row"}}>
+        <Board />
+        <Menu />
+      </div>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
