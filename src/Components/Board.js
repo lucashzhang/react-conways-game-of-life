@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
 import { updateBoard } from '../ReduxUtil/actions';
 import updateGame from '../GameUtil'
+
+import { Stage, Layer, Rect } from 'react-konva';
 
 class Board extends React.Component {
 
@@ -16,7 +17,7 @@ class Board extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps.isRunning !== this.props.isRunning && this.props.isRunning) {
             this.setState({
-                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), 50)
+                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), 20)
             })
         } else if (prevProps.isRunning !== this.props.isRunning && !this.props.isRunning) {
             clearInterval(this.state.interval)
@@ -36,15 +37,21 @@ class Board extends React.Component {
 
     render() {
         return <div style={{ width: "100vh" }}>
-            {this.props.board.map((tile, i) => (
-                <Button variant="contained" style={{
-                    height: "10vh",
-                    width: "10vh"
-                }}
-                    color={this.props.board[i] ? "primary" : "default"}
-                    key = {i}
-                    onClick={() => this.handleButtonClick(i)}>{i}</Button>
-            ))}
+            <Stage width={window.innerWidth} height={window.innerHeight}>
+                <Layer>
+                    {this.props.board.map((tile, i) => (
+                        <Rect x={20 + (i % this.props.gridSize) * 55}
+                            y={20 + Math.floor(i / this.props.gridSize) * 55}
+                            width={50}
+                            height={50}
+                            key={i}
+                            fill={this.props.board[i] ? "blue" : "grey"}
+                            onClick={() => this.handleButtonClick(i)}
+                        >
+                        </Rect>
+                    ))}
+                </Layer>
+            </Stage>
         </div>
     }
 }
