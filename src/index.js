@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './CSS/index.css';
 import App from './Components/App';
-import Board from './Components/Board'
-import Menu from './Components/Menu'
 import * as serviceWorker from './serviceWorker';
 import initStore from './ReduxUtil';
 import { Provider } from 'react-redux';

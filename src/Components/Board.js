@@ -14,11 +14,11 @@ class Board extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.isRunning != this.props.isRunning && this.props.isRunning) {
+        if (prevProps.isRunning !== this.props.isRunning && this.props.isRunning) {
             this.setState({
                 interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), 50)
             })
-        } else if (!this.props.isRunning) {
+        } else if (prevProps.isRunning !== this.props.isRunning && !this.props.isRunning) {
             clearInterval(this.state.interval)
         }
     }
@@ -42,6 +42,7 @@ class Board extends React.Component {
                     width: "10vh"
                 }}
                     color={this.props.board[i] ? "primary" : "default"}
+                    key = {i}
                     onClick={() => this.handleButtonClick(i)}>{i}</Button>
             ))}
         </div>
