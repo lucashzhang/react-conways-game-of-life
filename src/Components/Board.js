@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateBoard } from '../ReduxUtil/actions';
+import { updateBoard, incrementScore, startStop } from '../ReduxUtil/actions';
 import updateGame from '../GameUtil';
 import '../CSS/Board.css';
 
@@ -44,12 +44,16 @@ class Board extends React.Component {
     }
 
     updateBoard(board, gridSize) {
-        const newBoard = updateGame(board, gridSize)
-        this.props.updateBoard(newBoard)
+        let { nextBoard, numAlive } = updateGame(board, gridSize)
+        this.props.updateBoard(nextBoard);
+        this.props.updateScore(this.props.score, numAlive);
         // this.setState({
         //     board: newBoard
         // })
         this.updateCanvas();
+        if (numAlive === 0) {
+            this.props.toggleRunning(true);
+        }
     }
 
     randomFill() {
@@ -95,9 +99,6 @@ class Board extends React.Component {
         let newBoard = [...this.props.board];
         newBoard[i] = !newBoard[i]
             await this.props.updateBoard(newBoard)
-            // await this.setState({
-            //     board: newBoard
-            // })
             this.updateCanvas();
     }
 
@@ -119,7 +120,8 @@ const mapStateToProps = (state, ownProps) => {
         board: state.board.boardTiles,
         gridSize: state.board.gridSize,
         isRunning: state.startstop,
-        timerInterval: state.timer
+        timerInterval: state.timer,
+        score: state.board.score
     }
 }
 
@@ -128,6 +130,16 @@ const mapDispatchToProps = dispatch => {
         updateBoard(board) {
             dispatch(
                 updateBoard(board)
+            )
+        },
+        updateScore(oldScore, numAlive) {
+            dispatch(
+                incrementScore(oldScore, numAlive)
+            )
+        },
+        toggleRunning(isRunning) {
+            dispatch(
+                startStop(isRunning)
             )
         }
     }

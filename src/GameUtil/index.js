@@ -1,5 +1,6 @@
 export default (board, gridSize) => {
     let nextBoard = []
+    let numAlive = board.length;
     board.forEach((item, index) => {
         if (countAlive(index, board, gridSize) === 3) {
             nextBoard.splice(index, 1, true);
@@ -7,9 +8,10 @@ export default (board, gridSize) => {
             nextBoard.splice(index, 1, true);
         } else {
             nextBoard.splice(index, 1, false);
+            numAlive--;
         }
     });
-    return nextBoard
+    return {nextBoard, numAlive};
 }
 
 function countAlive(idx, board, gridSize) {

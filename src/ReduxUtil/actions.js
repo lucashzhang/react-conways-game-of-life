@@ -38,14 +38,16 @@ export const randomFillBoard = (gridSize) => {
     }
 }
 
-export const clearBoard = gridSize => {
+export const clearBoard = gridSize => dispatch => {
     let arraySize = gridSize * gridSize;
     let newBoard = new Array(arraySize).fill(false);
 
-    return {
-        type: C.UPDATE_BOARD,
-        payload: newBoard
-    }
+    // replaces current board with an empty board, stops game
+    batch(() => {
+        dispatch(startStop(true))
+        dispatch(updateBoard(newBoard))
+        dispatch(updateScore(0))
+    })
 }
 
 export const handleGridSlider = gridSize => dispatch => {
@@ -54,6 +56,7 @@ export const handleGridSlider = gridSize => dispatch => {
     batch(() => {
         dispatch(updateGridSize(gridSize))
         dispatch(updateBoard(newBoard))
+        dispatch(updateScore(0))
     })
 }
 
@@ -68,5 +71,20 @@ export const updateTimer = interval => {
     return {
         type: C.UPDATE_TIMER,
         payload: interval
+    }
+}
+
+export const updateScore = score => {
+    return {
+        type: C.UPDATE_SCORE,
+        payload: score
+    }
+}
+
+export const incrementScore = (oldScore, numAlive) => {
+    let newScore = oldScore + numAlive
+    return {
+        type: C.UPDATE_SCORE,
+        payload: newScore
     }
 }

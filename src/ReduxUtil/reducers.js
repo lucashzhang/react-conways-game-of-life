@@ -28,6 +28,15 @@ export const gridSize = (state = 10, action) => {
     }
 }
 
+export const score = (state = 0, action) => {
+    switch (action.type) {
+        case C.UPDATE_SCORE:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export const timer = (state = 500, action) => {
     switch(action.type) {
         case C.UPDATE_TIMER:
@@ -52,6 +61,7 @@ export default combineReducers({
     torusMode,
     board: combineReducers({
         boardTiles,
-        gridSize
+        gridSize,
+        score
     })
 })

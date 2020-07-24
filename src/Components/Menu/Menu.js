@@ -3,17 +3,41 @@ import { connect } from 'react-redux';
 import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import MenuButtons from './MenuButtons'
 import MenuSettings from './MenuSettings'
-import { startStop } from '../../ReduxUtil/actions';
+import MenuScore from './MenuScore'
 import '../../CSS/Menu.css';
 
 class Menu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            expanded: "instructions"
+        }
+    }
+
+    handleAccordion = (panel) => (event, isExpanded) => {
+        if (isExpanded) {
+            this.setState({
+                expanded: panel
+            })
+        } else {
+            this.setState({
+                expanded: false
+            })
+        }
+    }
+
     render() {
         return <div className="lucas-menu">
-            <Accordion square>
+            <MenuScore></MenuScore>
+            <Accordion square expanded={this.state.expanded === 'instructions'} onChange={this.handleAccordion('instructions')}>
+                <AccordionSummary>Instructions</AccordionSummary>
+                <AccordionDetails>lorem ipsum dolors</AccordionDetails>
+            </Accordion>
+            <Accordion square expanded={this.state.expanded === 'settings'} onChange={this.handleAccordion('settings')}>
                 <AccordionSummary>Settings</AccordionSummary>
                 <AccordionDetails><MenuSettings className="lucas-menu-settings"></MenuSettings></AccordionDetails>
             </Accordion>
-            <Accordion square>
+            <Accordion square expanded={this.state.expanded === 'patterns'} onChange={this.handleAccordion('patterns')}>
                 <AccordionSummary>Previous Patterns</AccordionSummary>
                 <AccordionDetails>lorem ipsum</AccordionDetails>
             </Accordion>
@@ -25,17 +49,13 @@ class Menu extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        isRunning: state.startstop
+        
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        runGame(isRunning) {
-            dispatch(
-                startStop(isRunning)
-            )
-        }
+        
     }
 }
 

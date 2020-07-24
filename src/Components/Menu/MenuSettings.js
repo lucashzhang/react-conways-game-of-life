@@ -5,12 +5,18 @@ import { handleGridSlider, updateTimer, toggleTorus } from '../../ReduxUtil/acti
 import '../../CSS/Menu.css';
 
 class MenuSettings extends React.Component {
+    constructor(props) {
+        super(props);
+        this.gridSize = this.props.gridSize;
+        this.timerSpeed = this.props.timerSpeed;
+    }
+
     render() {
         return <div className={this.props.className}>
             <div className="lucas-menu-options">
                 <p>Grid Size</p>
                 <Slider
-                    defaultValue={10}
+                    defaultValue={this.gridSize}
                     step={1}
                     min={10}
                     max={100}
@@ -22,7 +28,7 @@ class MenuSettings extends React.Component {
             <div className="lucas-menu-options">
                 <p>Timer Speed</p>
                 <Slider
-                    defaultValue={500}
+                    defaultValue={this.timerSpeed}
                     step={10}
                     min={10}
                     max={1000}
@@ -48,7 +54,8 @@ class MenuSettings extends React.Component {
 const mapStateToProps = state => {
     return {
         gridSize: state.board.gridSize,
-        isTorus: state.torusMode
+        isTorus: state.torusMode,
+        timerSpeed: state.timer
     }
 }
 
