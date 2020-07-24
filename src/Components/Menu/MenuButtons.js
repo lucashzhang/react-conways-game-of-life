@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-import { startStop } from '../ReduxUtil/actions';
+import { startStop } from '../../ReduxUtil/actions';
+import '../../CSS/Menu.css';
 
 class Menu extends React.Component {
     render() {
-        return <Button
-            onClick={() => this.props.onButtonClick(this.props.isRunning)}
-            color={this.props.isRunning ? "secondary" : "default"}
-        >
-            Start/Stop</Button>
+        return <div className={this.props.className}>
+            <Button variant="contained" color="primary" onClick={() => this.props.runGame(this.props.isRunning)}>{this.props.isRunning ? "Stop" : "Start"}</Button>
+            <Button variant="contained" color="primary">Save Pattern</Button>
+        </div>
     }
 }
 
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onButtonClick(isRunning) {
+        runGame(isRunning) {
             dispatch(
                 startStop(isRunning)
             )

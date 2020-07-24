@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateBoard } from '../ReduxUtil/actions';
-import updateGame from '../GameUtil'
+import updateGame from '../GameUtil';
+import '../CSS/Board.css';
 
 class Board extends React.Component {
 
@@ -25,69 +26,70 @@ class Board extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps.isRunning !== this.props.isRunning && this.props.isRunning) {
             this.setState({
-                interval: setInterval(() => this.updateBoard(this.state.board, this.props.gridSize), 50)
+                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), 50)
             })
         } else if (prevProps.isRunning !== this.props.isRunning && !this.props.isRunning) {
             clearInterval(this.state.interval)
-            this.props.updateBoard(this.state.board)
+            this.props.updateBoard(this.props.board)
         }
     }
 
     updateBoard(board, gridSize) {
         const newBoard = updateGame(board, gridSize)
-        this.setState({
-            board: newBoard
-        })
+        this.props.updateBoard(newBoard)
+        // this.setState({
+        //     board: newBoard
+        // })
         this.updateCanvas();
     }
 
     randomFill() {
-        let randomBoard = [...this.state.board]
+        let randomBoard = [...this.props.board]
         for (let i = 0; i < randomBoard.length; i++) {
             if (Math.random() > 0.6) {
                 randomBoard[i] = true
             }
         }
+        
     }
 
     updateCanvas(idx = null) {
         const ctx = this.canvasRef.current.getContext('2d');
-        ctx.clearRect(0, 0, 700, 700);
+        ctx.clearRect(0, 0, this.canvasRef.current.width, this.canvasRef.current.height);
 
-        this.state.board.forEach((tile, i) => {
+        this.props.board.forEach((tile, i) => {
             ctx.fillStyle = tile || (idx != null && idx === i) ? "#000000" : "#EEEEEE";
             ctx.fillRect((i % this.props.gridSize) * this.gridHeight, Math.floor(i / this.props.gridSize) * this.gridHeight, this.squareHeight, this.squareHeight);
         });
     }
 
-    handleHover(e) {
+    calcIndex(e) {
         let xCoord = Math.floor((e.clientX - e.target.offsetLeft) / this.gridHeight);
         let yCoord = Math.floor((e.clientY - e.target.offsetTop) / this.gridHeight);
-        let i = xCoord + yCoord * this.props.gridSize;
-        console.log(xCoord, yCoord)
+        return xCoord + yCoord * this.props.gridSize;
+    }
+
+    handleHover(e) {
+        let i = this.calcIndex(e)
 
         this.updateCanvas(i);
     }
 
     async handleClick(e) {
-        let xCoord = Math.floor((e.clientX - e.target.offsetLeft) / this.gridHeight);
-        let yCoord = Math.floor((e.clientY - e.target.offsetTop) / this.gridHeight);
-        xCoord = xCoord >= this.props.gridSize || xCoord < 0 ? -1 : xCoord;
-        yCoord = yCoord >= this.props.gridSize || yCoord < 0 ? -1 : yCoord;
-        let i = xCoord + yCoord * this.props.gridSize;
+        let i = this.calcIndex(e)
 
-        let newBoard = [...this.state.board];
+        let newBoard = [...this.props.board];
         newBoard[i] = !newBoard[i]
             await this.props.updateBoard(newBoard)
-            await this.setState({
-                board: newBoard
-            })
-            console.log("Clicking:", xCoord, yCoord);
+            // await this.setState({
+            //     board: newBoard
+            // })
             this.updateCanvas();
     }
 
     render() {
         return <canvas
+            id="lucas-game-board"
             onMouseMove={(e) => this.handleHover(e)}
             onClick={(e) => this.handleClick(e)}
             onMouseLeave={() => this.updateCanvas()}

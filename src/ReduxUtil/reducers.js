@@ -10,7 +10,7 @@ export const startstop = (state = false, action) => {
     }
 }
 
-export const boardTiles = (state = new Array(10000).fill(false), action) => {
+export const boardTiles = (state = new Array(100).fill(false), action) => {
     switch (action.type) {
         case C.UPDATE_BOARD:
             return action.payload;
@@ -19,7 +19,7 @@ export const boardTiles = (state = new Array(10000).fill(false), action) => {
     }
 }
 
-export const gridSize = (state = 100, action) => {
+export const gridSize = (state = 10, action) => {
     switch (action.type) {
         case C.UPDATE_SIZE:
             return action.payload;

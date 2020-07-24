@@ -1,13 +1,14 @@
 import React from 'react';
 import Board from './Board';
-import Menu from './Menu';
+import Menu from './Menu/Menu';
 import '../CSS/App.css';
 
 function App() {
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div className="lucas-app">
       <Board />
       <Menu />
+      <div id="background"></div>
     </div>
   );
 }

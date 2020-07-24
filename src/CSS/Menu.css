@@ -1,0 +1,16 @@
+.lucas-menu {
+    position: relative;
+    height: 700px;
+    width: 400px;
+    margin: 0 20px 0 20px;
+}
+
+.lucas-menu-buttons {
+    position: absolute;
+    bottom: 6px;
+    width: 100%;
+}
+
+.lucas-menu-buttons .MuiButton-root {
+    width: 50%;
+}
