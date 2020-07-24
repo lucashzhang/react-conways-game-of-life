@@ -8,7 +8,6 @@ export const startStop = isRunning => {
 }
 
 export const updateBoard = board => {
-
     return {
         type: C.UPDATE_BOARD,
         payload: board
