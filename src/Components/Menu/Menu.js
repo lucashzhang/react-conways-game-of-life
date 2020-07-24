@@ -28,7 +28,7 @@ class Menu extends React.Component {
 
     render() {
         return <div className="lucas-menu">
-            <MenuScore></MenuScore>
+            <MenuScore className="lucas-menu-score"></MenuScore>
             <Accordion square expanded={this.state.expanded === 'instructions'} onChange={this.handleAccordion('instructions')}>
                 <AccordionSummary>Instructions</AccordionSummary>
                 <AccordionDetails>lorem ipsum dolors</AccordionDetails>

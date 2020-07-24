@@ -26,7 +26,7 @@ class MenuSettings extends React.Component {
                 />
             </div>
             <div className="lucas-menu-options">
-                <p>Timer Speed</p>
+                <p>Tick Interval (ms)</p>
                 <Slider
                     defaultValue={this.timerSpeed}
                     step={10}

@@ -22,7 +22,7 @@ export const updateGridSize = gridSize => {
     }
 }
 
-export const randomFillBoard = (gridSize) => {
+export const randomFillBoard = gridSize => dispatch => {
     let arraySize = gridSize * gridSize;
     let newBoard = new Array(arraySize).fill(false);
     let numberFilled = Math.floor(Math.random() * (arraySize - gridSize * 3 + 1) + gridSize * 2)
@@ -32,10 +32,11 @@ export const randomFillBoard = (gridSize) => {
         newBoard[j] = true;
     }
 
-    return {
-        type: C.UPDATE_BOARD,
-        payload: newBoard
-    }
+    batch(() => {
+        dispatch(startStop(true))
+        dispatch(updateBoard(newBoard))
+        dispatch(updateScore(0))
+    })
 }
 
 export const clearBoard = gridSize => dispatch => {

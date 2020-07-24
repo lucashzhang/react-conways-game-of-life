@@ -63,3 +63,11 @@
 .lucas-menu .MuiSwitch-switchBase {
     color: #4A473E;
 }
+
+.lucas-menu-score {
+    color: #4A473E;
+}
+
+.lucas-menu-score h1 {
+    font-size: 2.5rem
+}
