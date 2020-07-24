@@ -13,4 +13,11 @@
 
 .lucas-menu-buttons .MuiButton-root {
     width: 50%;
+    background-color: #4A473E; 
+    color: white;
+    border-radius: 0px;
+}
+
+.lucas-menu-buttons .MuiButton-root:hover {
+    background-color: #6D6A61; 
 }

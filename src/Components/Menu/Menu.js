@@ -8,11 +8,11 @@ import '../../CSS/Menu.css';
 class Menu extends React.Component {
     render() {
         return <div className="lucas-menu">
-            <Accordion square style={{backgroundColor: "#333333", color: "white"}}>
+            <Accordion square style={{backgroundColor: "#4A473E", color: "white"}}>
                 <AccordionSummary>Settings</AccordionSummary>
                 <AccordionDetails>lorem ipsum</AccordionDetails>
             </Accordion>
-            <Accordion square style={{backgroundColor: "#333333", color: "white"}}>
+            <Accordion square style={{backgroundColor: "#4A473E", color: "white"}}>
                 <AccordionSummary>Previous Patterns</AccordionSummary>
                 <AccordionDetails>lorem ipsum</AccordionDetails>
             </Accordion>

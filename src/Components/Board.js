@@ -58,7 +58,7 @@ class Board extends React.Component {
         ctx.clearRect(0, 0, this.canvasRef.current.width, this.canvasRef.current.height);
 
         this.props.board.forEach((tile, i) => {
-            ctx.fillStyle = tile || (idx != null && idx === i) ? "#000000" : "#EEEEEE";
+            ctx.fillStyle = tile || (idx != null && idx === i) ? "#4A473E" : "#B3AE99";
             ctx.fillRect((i % this.props.gridSize) * this.gridHeight, Math.floor(i / this.props.gridSize) * this.gridHeight, this.squareHeight, this.squareHeight);
         });
     }
