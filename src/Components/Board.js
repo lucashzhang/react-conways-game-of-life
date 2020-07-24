@@ -11,6 +11,7 @@ class Board extends React.Component {
         super(props);
         this.state = {
             interval: null,
+            board: this.props.board
         }
     }
 
@@ -33,6 +34,7 @@ class Board extends React.Component {
         let newBoard = [...this.props.board];
         newBoard[i] = !newBoard[i]
         this.props.updateBoard(newBoard)
+
     }
 
     render() {
@@ -40,10 +42,10 @@ class Board extends React.Component {
             <Stage width={window.innerWidth} height={window.innerHeight}>
                 <Layer>
                     {this.props.board.map((tile, i) => (
-                        <Rect x={20 + (i % this.props.gridSize) * 55}
-                            y={20 + Math.floor(i / this.props.gridSize) * 55}
-                            width={50}
-                            height={50}
+                        <Rect x={20 + (i % this.props.gridSize) * 11}
+                            y={20 + Math.floor(i / this.props.gridSize) * 11}
+                            width={10}
+                            height={10}
                             key={i}
                             fill={this.props.board[i] ? "blue" : "grey"}
                             onClick={() => this.handleButtonClick(i)}
