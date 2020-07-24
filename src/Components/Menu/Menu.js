@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Accordion, AccordionSummary, AccordionDetails, Button } from '@material-ui/core';
+import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import MenuButtons from './MenuButtons'
+import MenuSettings from './MenuSettings'
 import { startStop } from '../../ReduxUtil/actions';
 import '../../CSS/Menu.css';
 
 class Menu extends React.Component {
     render() {
         return <div className="lucas-menu">
-            <Accordion square style={{backgroundColor: "#4A473E", color: "white"}}>
+            <Accordion square>
                 <AccordionSummary>Settings</AccordionSummary>
-                <AccordionDetails>lorem ipsum</AccordionDetails>
+                <AccordionDetails><MenuSettings className="lucas-menu-settings"></MenuSettings></AccordionDetails>
             </Accordion>
-            <Accordion square style={{backgroundColor: "#4A473E", color: "white"}}>
+            <Accordion square>
                 <AccordionSummary>Previous Patterns</AccordionSummary>
                 <AccordionDetails>lorem ipsum</AccordionDetails>
             </Accordion>

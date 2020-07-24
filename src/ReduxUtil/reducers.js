@@ -28,8 +28,28 @@ export const gridSize = (state = 10, action) => {
     }
 }
 
+export const timer = (state = 500, action) => {
+    switch(action.type) {
+        case C.UPDATE_TIMER:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const torusMode = (state = false, action) => {
+    switch(action.type) {
+        case C.TOGGLE_TORUS:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     startstop,
+    timer,
+    torusMode,
     board: combineReducers({
         boardTiles,
         gridSize

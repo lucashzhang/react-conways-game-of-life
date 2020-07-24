@@ -18,6 +18,48 @@
     border-radius: 0px;
 }
 
+.lucas-menu-buttons .MuiButton-fullWidth {
+    width: 100%;
+}
+
 .lucas-menu-buttons .MuiButton-root:hover {
     background-color: #6D6A61; 
+}
+
+.lucas-menu-settings {
+    width: 100%;
+}
+
+.lucas-menu .MuiAccordionSummary-root {
+    background-color: #4A473E;
+    color: white
+}
+
+.lucas-menu .MuiAccordionDetails-root {
+    background-color: #B3AE99;
+    color: #4A473E;
+}
+
+.lucas-menu .MuiSlider-root {
+    width: 60%;
+    color: #4A473E;
+}
+
+.lucas-menu .MuiSlider-thumb:hover {
+    box-shadow: 0px 0px 0px 8px rgba(74, 71, 62, 0.16);
+}
+
+.lucas-menu-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%
+}
+
+.lucas-menu-options .lucas-menu-control {
+    margin-left: auto;
+}
+
+.lucas-menu .MuiSwitch-switchBase {
+    color: #4A473E;
 }

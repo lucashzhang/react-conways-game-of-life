@@ -18,19 +18,28 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
-        this.gridHeight = Math.floor(this.canvasRef.current.height / this.props.gridSize);
-        this.squareHeight = Math.floor(this.gridHeight * 0.9);
+        this.setGridDimensions();
         this.updateCanvas();
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.isRunning !== this.props.isRunning && this.props.isRunning) {
             this.setState({
-                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), 50)
+                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), this.props.timerInterval)
             })
         } else if (prevProps.isRunning !== this.props.isRunning && !this.props.isRunning) {
             clearInterval(this.state.interval)
             this.props.updateBoard(this.props.board)
+        }
+        if (prevProps.gridSize !== this.props.gridSize || prevProps.board !== this.props.board) {
+            this.setGridDimensions();
+            this.updateCanvas();
+        }
+        if (prevProps.timerInterval !== this.props.timerInterval && this.props.isRunning) {
+            clearInterval(this.state.interval);
+            this.setState({
+                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), this.props.timerInterval)
+            })
         }
     }
 
@@ -51,6 +60,11 @@ class Board extends React.Component {
             }
         }
         
+    }
+
+    setGridDimensions() {
+        this.gridHeight = (this.canvasRef.current.height / this.props.gridSize);
+        this.squareHeight = (this.gridHeight * 0.9);
     }
 
     updateCanvas(idx = null) {
@@ -105,6 +119,7 @@ const mapStateToProps = (state, ownProps) => {
         board: state.board.boardTiles,
         gridSize: state.board.gridSize,
         isRunning: state.startstop,
+        timerInterval: state.timer
     }
 }
 

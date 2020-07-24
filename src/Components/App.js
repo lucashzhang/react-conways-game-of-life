@@ -3,7 +3,7 @@ import Board from './Board';
 import Menu from './Menu/Menu';
 import '../CSS/App.css';
 
-import bgmusic from '../assets/NieRAutomataAmusementPark.mp3';
+// import bgmusic from '../assets/NieRAutomataAmusementPark.mp3';
 
 function App() {
   return (
