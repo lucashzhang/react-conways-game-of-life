@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-import { startStop, randomFillBoard, clearBoard, savePattern } from '../../ReduxUtil/actions';
+import { startStop, randomFillBoard, clearBoard, savePattern, setCurrPattern } from '../../ReduxUtil/actions';
 import '../../CSS/Menu.css';
 
 class Menu extends React.Component {
 
     handleStart = () => {
-        if (!this.props.isRunning) {
-            this.props.savePattern()
-        }
-
         this.props.runGame(this.props.isRunning)
+
+        if (!this.props.isRunning && this.props.score === 0) {
+            this.props.savePattern()
+        } else if (!this.props.isRunning) {
+            this.props.unsetCurrPattern();
+        }
     }
 
     render() {
@@ -27,6 +29,7 @@ class Menu extends React.Component {
 const mapStateToProps = state => {
     return {
         isRunning: state.startstop,
+        score: state.board.score
     }
 }
 
@@ -47,9 +50,14 @@ const mapDispatchToProps = dispatch => {
                 clearBoard()
             )
         },
-        savePattern(board) {
+        savePattern() {
             dispatch(
-                savePattern(board)
+                savePattern()
+            )
+        },
+        unsetCurrPattern() {
+            dispatch(
+                setCurrPattern('initial')
             )
         }
     }

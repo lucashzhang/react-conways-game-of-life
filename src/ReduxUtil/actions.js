@@ -47,6 +47,7 @@ export const clearBoard = () => (dispatch, getState) => {
 
     // replaces current board with an empty board, stops game
     batch(() => {
+        dispatch((setCurrPattern("initial")));
         dispatch(startStop(true))
         dispatch(updateBoard(newBoard))
         dispatch(updateScore(0))
@@ -101,7 +102,9 @@ export const setCurrPattern = pattern => {
 
 export const savePattern = () => (dispatch, getState) => {
     let currDate = new Date()
+    let currScore = getState().board.score
     let currBoard = [...getState().board.boardTiles]
+
     if (!getState().board.savedPatterns.some(p => JSON.stringify(p.board) === JSON.stringify(currBoard))) {
         batch(() => {
             dispatch({
@@ -109,26 +112,48 @@ export const savePattern = () => (dispatch, getState) => {
                 payload: {
                     date: currDate,
                     board: currBoard,
-                    score: getState().board.score
+                    score: currScore
                 }
             })
             dispatch(setCurrPattern(currDate.toString()))
         })
     }
-}
-
-export const patternMouseOver = board => (dispatch, getState) => {
-    console.log(!getState().startstop)
-    if (!getState().startstop) {
-        batch(() => {
-            dispatch(updateBoard(board))
-        })
+    if (getState().startstop) {
+        dispatch(setCurrPattern('initial'))
     }
 }
 
 export const handleRadio = pattern => dispatch => {
     batch(() => {
-        dispatch(updateBoard(pattern.board))
-        dispatch(setCurrPattern(pattern.date.toString()))
+        dispatch(updateBoard(pattern.board));
+        dispatch(setCurrPattern(pattern.date.toString()));
+        dispatch(updateScore(pattern.score));
+    })
+}
+
+export const handlePatternDelete = date => (dispatch, getState) => {
+    let currPattern = getState().board.currPattern;
+    dispatch({
+        type: C.DELETE_PATTERN,
+        payload: date
+    })
+    // Move save as needed
+    if (currPattern === date.toString()) {
+        if (getState().board.savedPatterns.length > 0) {
+            let nextPattern = getState().board.savedPatterns[0];
+            dispatch(handleRadio(nextPattern))
+        } else {
+            dispatch(clearBoard())
+        }
+    }
+}
+
+export const handleTileClick = index => (dispatch, getState) => {
+    let newBoard = [...getState().board.boardTiles];
+    newBoard[index] = !newBoard[index];
+    batch(() => {
+        dispatch(updateBoard(newBoard));
+        dispatch(startStop(true));
+        dispatch(updateScore(0));
     })
 }

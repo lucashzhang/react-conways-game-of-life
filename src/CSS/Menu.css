@@ -13,7 +13,7 @@
 
 .lucas-menu-buttons .MuiButton-root {
     width: 50%;
-    background-color: #4A473E; 
+    background-color: #4A473E;
     color: white;
     border-radius: 0px;
 }
@@ -23,7 +23,7 @@
 }
 
 .lucas-menu-buttons .MuiButton-root:hover {
-    background-color: #6D6A61; 
+    background-color: #6D6A61;
 }
 
 .lucas-menu-settings {
@@ -38,8 +38,6 @@
 .lucas-menu .MuiAccordionDetails-root {
     background-color: #B3AE99;
     color: #4A473E;
-    max-height: 210px;
-    overflow-y: auto;
 }
 
 .lucas-menu .MuiSlider-root {
@@ -76,4 +74,36 @@
 
 .lucas-menu-patterns {
     width: 100%
+}
+
+.lucas-menu-patterns .MuiButton-fullWidth {
+    background-color: #4A473E;
+    color: white;
+    width: 100%;
+    border-radius: 0px;
+    margin-top: 16px;
+}
+
+.lucas-menu-patterns .MuiButton-root:hover {
+    background-color: #6D6A61;
+}
+
+.lucas-menu-saved-patterns {
+    margin-top: 8px;
+    overflow-y: auto;
+    max-height: 180px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.lucas-menu-saved-patterns::-webkit-scrollbar {
+    display: none;
+}
+
+.lucas-menu-patterns .MuiRadio-colorSecondary.Mui-checked {
+    color: #4A473E;
+}
+
+.lucas-menu-patterns .MuiRadio-colorSecondary.Mui-checked:hover {
+    background-color:  rgba(74, 71, 62, 0.16);
 }

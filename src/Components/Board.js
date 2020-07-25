@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateBoard, incrementScore, startStop, updateScore, savePattern } from '../ReduxUtil/actions';
+import { updateBoard, incrementScore, startStop, handleTileClick, savePattern } from '../ReduxUtil/actions';
 import updateGame from '../GameUtil';
 import '../CSS/Board.css';
 
@@ -95,12 +95,8 @@ class Board extends React.Component {
 
     async handleClick(e) {
         let i = this.calcIndex(e)
+        await this.props.handleTileClick(i)
 
-        let newBoard = [...this.props.board];
-        newBoard[i] = !newBoard[i];
-        await this.props.updateBoard(newBoard);
-        await this.props.toggleRunning(true);
-        await this.props.updateScore(0);
         this.updateCanvas();
     }
 
@@ -139,9 +135,9 @@ const mapDispatchToProps = dispatch => {
                 incrementScore(oldScore, numAlive)
             )
         },
-        updateScore(oldScore, numAlive) {
+        handleTileClick(index) {
             dispatch(
-                updateScore(oldScore, numAlive)
+                handleTileClick(index)
             )
         },
         toggleRunning(isRunning) {
