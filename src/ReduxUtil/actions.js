@@ -33,7 +33,7 @@ export const randomFillBoard = () => (dispatch, getState) => {
         let x = Math.floor(Math.random() * gridSize);
         let y = Math.floor(Math.random() * gridSize);
 
-        newBoard[x][y] = false;
+        newBoard[x][y] = true;
     }
 
     batch(() => {
