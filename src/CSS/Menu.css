@@ -86,6 +86,7 @@
 
 .lucas-menu-patterns .MuiButton-root:hover {
     background-color: #6D6A61;
+
 }
 
 .lucas-menu-saved-patterns {
@@ -105,5 +106,9 @@
 }
 
 .lucas-menu-patterns .MuiRadio-colorSecondary.Mui-checked:hover {
+    background-color:  rgba(74, 71, 62, 0.16);
+}
+
+.lucas-menu-patterns .MuiRadio-colorSecondary:hover {
     background-color:  rgba(74, 71, 62, 0.16);
 }

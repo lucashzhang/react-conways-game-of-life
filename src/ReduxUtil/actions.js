@@ -102,7 +102,7 @@ export const savePattern = () => (dispatch, getState) => {
     let currDate = new Date()
     let currBoard = getState().board
 
-    if (!getState().board.savedPatterns.some(p => JSON.stringify(p.board) === JSON.stringify(currBoard))) {
+    if (!getState().board.savedPatterns.some(p => JSON.stringify(p.board) === JSON.stringify(currBoard.boardTiles))) {
         batch(() => {
             dispatch({
                 type: C.SAVE_PATTERN,
