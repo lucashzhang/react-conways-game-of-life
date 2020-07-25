@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/react-conways-game-of-life/static/css/main.33b041ab.chunk.css",
+    "main.js": "/react-conways-game-of-life/static/js/main.597f45d9.chunk.js",
+    "main.js.map": "/react-conways-game-of-life/static/js/main.597f45d9.chunk.js.map",
+    "runtime-main.js": "/react-conways-game-of-life/static/js/runtime-main.0a5a7789.js",
+    "runtime-main.js.map": "/react-conways-game-of-life/static/js/runtime-main.0a5a7789.js.map",
+    "static/js/2.3f462020.chunk.js": "/react-conways-game-of-life/static/js/2.3f462020.chunk.js",
+    "static/js/2.3f462020.chunk.js.map": "/react-conways-game-of-life/static/js/2.3f462020.chunk.js.map",
+    "index.html": "/react-conways-game-of-life/index.html",
+    "precache-manifest.d056bca5d65d485f214bdf8f613002f5.js": "/react-conways-game-of-life/precache-manifest.d056bca5d65d485f214bdf8f613002f5.js",
+    "service-worker.js": "/react-conways-game-of-life/service-worker.js",
+    "static/css/main.33b041ab.chunk.css.map": "/react-conways-game-of-life/static/css/main.33b041ab.chunk.css.map",
+    "static/js/2.3f462020.chunk.js.LICENSE.txt": "/react-conways-game-of-life/static/js/2.3f462020.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/react-conways-game-of-life/static/media/yorha.839d995e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0a5a7789.js",
+    "static/js/2.3f462020.chunk.js",
+    "static/css/main.33b041ab.chunk.css",
+    "static/js/main.597f45d9.chunk.js"
+  ]
+}
