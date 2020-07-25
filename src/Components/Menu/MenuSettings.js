@@ -37,7 +37,7 @@ class MenuSettings extends React.Component {
                     onChange={(e, value) => this.props.handleTimerSlider(value)}
                 />
             </div>
-            <div className="lucas-menu-options">
+            {/* <div className="lucas-menu-options">
                 <p>Torus Mode</p>
                 <Switch
                     color="default"
@@ -45,7 +45,7 @@ class MenuSettings extends React.Component {
                     checked={this.props.isTorus}
                     onClick={() => this.props.handleTorus(this.props.isTorus)}
                 />
-            </div>
+            </div> */}
         </div>
     }
 }

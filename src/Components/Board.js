@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateBoard, incrementScore, startStop, updateScore } from '../ReduxUtil/actions';
+import { updateBoard, incrementScore, startStop, updateScore, savePattern } from '../ReduxUtil/actions';
 import updateGame from '../GameUtil';
 import '../CSS/Board.css';
 
@@ -29,7 +29,7 @@ class Board extends React.Component {
             })
         } else if (prevProps.isRunning !== this.props.isRunning && !this.props.isRunning) {
             clearInterval(this.state.interval)
-            this.props.updateBoard(this.props.board)
+            // this.props.updateBoard(this.props.board)
         }
         if (prevProps.gridSize !== this.props.gridSize || prevProps.board !== this.props.board) {
             this.setGridDimensions();
@@ -147,6 +147,11 @@ const mapDispatchToProps = dispatch => {
         toggleRunning(isRunning) {
             dispatch(
                 startStop(isRunning)
+            )
+        },
+        savePattern(board) {
+            dispatch(
+                savePattern(board)
             )
         }
     }

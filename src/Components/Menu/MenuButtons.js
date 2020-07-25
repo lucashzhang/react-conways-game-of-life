@@ -1,15 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-import { startStop, randomFillBoard, clearBoard } from '../../ReduxUtil/actions';
+import { startStop, randomFillBoard, clearBoard, savePattern } from '../../ReduxUtil/actions';
 import '../../CSS/Menu.css';
 
 class Menu extends React.Component {
+
+    handleStart = () => {
+        if (!this.props.isRunning) {
+            this.props.savePattern()
+        }
+
+        this.props.runGame(this.props.isRunning)
+    }
+
     render() {
         return <div className={this.props.className}>
-            <Button variant="contained" onClick={() => this.props.clearBoard(this.props.gridSize)}>Clear Pattern</Button>
-            <Button variant="contained" onClick={() => this.props.randomFill(this.props.gridSize)}>Random Pattern</Button>
-            <Button variant="contained" fullWidth onClick={() => this.props.runGame(this.props.isRunning)}>{this.props.isRunning ? "Stop" : "Start"}</Button>
+            <Button variant="contained" onClick={this.props.clearBoard}>Clear Pattern</Button>
+            <Button variant="contained" onClick={this.props.randomFill}>Random Pattern</Button>
+            <Button variant="contained" fullWidth onClick={this.handleStart}>{this.props.isRunning ? "Stop" : "Start"}</Button>
         </div>
     }
 }
@@ -18,7 +27,6 @@ class Menu extends React.Component {
 const mapStateToProps = state => {
     return {
         isRunning: state.startstop,
-        gridSize: state.board.gridSize
     }
 }
 
@@ -29,14 +37,19 @@ const mapDispatchToProps = dispatch => {
                 startStop(isRunning)
             )
         },
-        randomFill(gridSize) {
+        randomFill() {
             dispatch(
-                randomFillBoard(gridSize)
+                randomFillBoard()
             )
         },
-        clearBoard(gridSize) {
+        clearBoard() {
             dispatch(
-                clearBoard(gridSize)
+                clearBoard()
+            )
+        },
+        savePattern(board) {
+            dispatch(
+                savePattern(board)
             )
         }
     }

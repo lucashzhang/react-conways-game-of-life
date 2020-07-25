@@ -28,6 +28,26 @@ export const gridSize = (state = 10, action) => {
     }
 }
 
+export const savedPatterns = (state = [], action) => {
+    switch (action.type) {
+        case C.SAVE_PATTERN:
+            return state.concat(action.payload).sort((a, b) => b.date - a.date)
+        case C.DELETE_PATTERN:
+            return state.filter(pattern => pattern.date !== action.payload)
+        default:
+            return state
+    }
+}
+
+export const currPattern = (state = "initial", action) => {
+    switch (action.type) {
+        case C.SELECT_PATTERN:
+            return action.payload;
+        default:
+            return state
+    }
+}
+
 export const score = (state = 0, action) => {
     switch (action.type) {
         case C.UPDATE_SCORE:
@@ -38,7 +58,7 @@ export const score = (state = 0, action) => {
 }
 
 export const timer = (state = 500, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case C.UPDATE_TIMER:
             return action.payload;
         default:
@@ -47,7 +67,7 @@ export const timer = (state = 500, action) => {
 }
 
 export const torusMode = (state = false, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case C.TOGGLE_TORUS:
             return action.payload;
         default:
@@ -62,6 +82,8 @@ export default combineReducers({
     board: combineReducers({
         boardTiles,
         gridSize,
-        score
+        score,
+        savedPatterns,
+        currPattern
     })
 })

@@ -22,7 +22,8 @@ export const updateGridSize = gridSize => {
     }
 }
 
-export const randomFillBoard = gridSize => dispatch => {
+export const randomFillBoard = () => (dispatch, getState) => {
+    let gridSize = getState().board.gridSize;
     let arraySize = gridSize * gridSize;
     let newBoard = new Array(arraySize).fill(false);
     let numberFilled = Math.floor(Math.random() * (arraySize - gridSize * 3 + 1) + gridSize * 2)
@@ -39,7 +40,8 @@ export const randomFillBoard = gridSize => dispatch => {
     })
 }
 
-export const clearBoard = gridSize => dispatch => {
+export const clearBoard = () => (dispatch, getState) => {
+    let gridSize = getState().board.gridSize;
     let arraySize = gridSize * gridSize;
     let newBoard = new Array(arraySize).fill(false);
 
@@ -88,4 +90,45 @@ export const incrementScore = (oldScore, numAlive) => {
         type: C.UPDATE_SCORE,
         payload: newScore
     }
+}
+
+export const setCurrPattern = pattern => {
+    return {
+        type: C.SELECT_PATTERN,
+        payload: pattern
+    }
+}
+
+export const savePattern = () => (dispatch, getState) => {
+    let currDate = new Date()
+    let currBoard = [...getState().board.boardTiles]
+    if (!getState().board.savedPatterns.some(p => JSON.stringify(p.board) === JSON.stringify(currBoard))) {
+        batch(() => {
+            dispatch({
+                type: C.SAVE_PATTERN,
+                payload: {
+                    date: currDate,
+                    board: currBoard,
+                    score: getState().board.score
+                }
+            })
+            dispatch(setCurrPattern(currDate.toString()))
+        })
+    }
+}
+
+export const patternMouseOver = board => (dispatch, getState) => {
+    console.log(!getState().startstop)
+    if (!getState().startstop) {
+        batch(() => {
+            dispatch(updateBoard(board))
+        })
+    }
+}
+
+export const handleRadio = pattern => dispatch => {
+    batch(() => {
+        dispatch(updateBoard(pattern.board))
+        dispatch(setCurrPattern(pattern.date.toString()))
+    })
 }

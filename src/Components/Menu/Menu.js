@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
-import MenuButtons from './MenuButtons'
-import MenuSettings from './MenuSettings'
-import MenuScore from './MenuScore'
+import MenuButtons from './MenuButtons';
+import MenuSettings from './MenuSettings';
+import MenuScore from './MenuScore';
+import MenuPatterns from './MenuPatterns';
 import '../../CSS/Menu.css';
 
 class Menu extends React.Component {
@@ -39,7 +40,7 @@ class Menu extends React.Component {
             </Accordion>
             <Accordion square expanded={this.state.expanded === 'patterns'} onChange={this.handleAccordion('patterns')}>
                 <AccordionSummary>Previous Patterns</AccordionSummary>
-                <AccordionDetails>lorem ipsum</AccordionDetails>
+                <AccordionDetails><MenuPatterns className="lucas-menu-patterns"></MenuPatterns></AccordionDetails>
             </Accordion>
             <MenuButtons className="lucas-menu-buttons"></MenuButtons>
         </div>

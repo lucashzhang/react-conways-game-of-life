@@ -38,6 +38,8 @@
 .lucas-menu .MuiAccordionDetails-root {
     background-color: #B3AE99;
     color: #4A473E;
+    max-height: 210px;
+    overflow-y: auto;
 }
 
 .lucas-menu .MuiSlider-root {
@@ -70,4 +72,8 @@
 
 .lucas-menu-score h1 {
     font-size: 2.5rem
+}
+
+.lucas-menu-patterns {
+    width: 100%
 }
