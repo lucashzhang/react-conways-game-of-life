@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateBoard, incrementScore, startStop, handleTileClick, savePattern } from '../ReduxUtil/actions';
+import { updateBoard, startStop, handleTileClick, handleBoardTick, savePattern } from '../ReduxUtil/actions';
 import updateGame from '../GameUtil';
 import '../CSS/Board.css';
 
@@ -25,11 +25,10 @@ class Board extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps.isRunning !== this.props.isRunning && this.props.isRunning) {
             this.setState({
-                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), this.props.timerInterval)
+                interval: setInterval(() => this.updateBoard(), this.props.timerInterval)
             })
         } else if (prevProps.isRunning !== this.props.isRunning && !this.props.isRunning) {
             clearInterval(this.state.interval)
-            // this.props.updateBoard(this.props.board)
         }
         if (prevProps.gridSize !== this.props.gridSize || prevProps.board !== this.props.board) {
             this.setGridDimensions();
@@ -38,32 +37,14 @@ class Board extends React.Component {
         if (prevProps.timerInterval !== this.props.timerInterval && this.props.isRunning) {
             clearInterval(this.state.interval);
             this.setState({
-                interval: setInterval(() => this.updateBoard(this.props.board, this.props.gridSize), this.props.timerInterval)
+                interval: setInterval(() => this.updateBoard(), this.props.timerInterval)
             })
         }
     }
 
-    updateBoard(board, gridSize) {
-        let { nextBoard, numAlive } = updateGame(board, gridSize)
-        this.props.updateBoard(nextBoard);
-        this.props.incrementScore(this.props.score, numAlive);
-        // this.setState({
-        //     board: newBoard
-        // })
+    updateBoard() {
+        this.props.handleBoardTick()
         this.updateCanvas();
-        if (numAlive === 0) {
-            this.props.toggleRunning(true);
-        }
-    }
-
-    randomFill() {
-        let randomBoard = [...this.props.board]
-        for (let i = 0; i < randomBoard.length; i++) {
-            if (Math.random() > 0.6) {
-                randomBoard[i] = true
-            }
-        }
-
     }
 
     setGridDimensions() {
@@ -120,7 +101,6 @@ const mapStateToProps = (state, ownProps) => {
         gridSize: state.board.gridSize,
         isRunning: state.startstop,
         timerInterval: state.timer,
-        score: state.board.score
     }
 }
 
@@ -131,19 +111,14 @@ const mapDispatchToProps = dispatch => {
                 updateBoard(board)
             )
         },
-        incrementScore(oldScore, numAlive) {
-            dispatch(
-                incrementScore(oldScore, numAlive)
-            )
-        },
         handleTileClick(x, y) {
             dispatch(
                 handleTileClick(x, y)
             )
         },
-        toggleRunning(isRunning) {
+        handleBoardTick() {
             dispatch(
-                startStop(isRunning)
+                handleBoardTick()
             )
         },
         savePattern(board) {

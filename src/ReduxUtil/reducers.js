@@ -78,12 +78,12 @@ export const torusMode = (state = false, action) => {
 export default combineReducers({
     startstop,
     timer,
-    torusMode,
     board: combineReducers({
         boardTiles,
         gridSize,
         score,
         savedPatterns,
-        currPattern
+        currPattern,
+        torusMode,
     })
 })

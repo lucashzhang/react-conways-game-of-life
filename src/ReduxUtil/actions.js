@@ -1,5 +1,6 @@
 import C from './constants';
 import { batch } from 'react-redux';
+import updateGame from '../GameUtil';
 
 export const startStop = isRunning => {
     return {
@@ -32,7 +33,7 @@ export const randomFillBoard = () => (dispatch, getState) => {
         let x = Math.floor(Math.random() * gridSize);
         let y = Math.floor(Math.random() * gridSize);
 
-        newBoard[x][y] = true;
+        newBoard[x][y] = false;
     }
 
     batch(() => {
@@ -99,8 +100,7 @@ export const setCurrPattern = pattern => {
 
 export const savePattern = () => (dispatch, getState) => {
     let currDate = new Date()
-    let currScore = getState().board.score
-    let currBoard = [...getState().board.boardTiles]
+    let currBoard = getState().board
 
     if (!getState().board.savedPatterns.some(p => JSON.stringify(p.board) === JSON.stringify(currBoard))) {
         batch(() => {
@@ -108,8 +108,10 @@ export const savePattern = () => (dispatch, getState) => {
                 type: C.SAVE_PATTERN,
                 payload: {
                     date: currDate,
-                    board: currBoard,
-                    score: currScore
+                    board: currBoard.boardTiles,
+                    gridSize: currBoard.gridSize,
+                    score: currBoard.score,
+                    isTorus: currBoard.torusMode
                 }
             })
             dispatch(setCurrPattern(currDate.toString()))
@@ -125,6 +127,8 @@ export const handleRadio = pattern => dispatch => {
         dispatch(updateBoard(pattern.board));
         dispatch(setCurrPattern(pattern.date.toString()));
         dispatch(updateScore(pattern.score));
+        dispatch(toggleTorus(!pattern.isTorus));
+        dispatch(updateGridSize(pattern.gridSize));
     })
 }
 
@@ -153,4 +157,17 @@ export const handleTileClick = (x, y) => (dispatch, getState) => {
         dispatch(startStop(true));
         dispatch(updateScore(0));
     })
+}
+
+export const handleBoardTick = () => (dispatch, getState) => {
+    const board = getState().board
+    let { nextBoard, numAlive } = updateGame(board.boardTiles, board.gridSize, board.torusMode)
+
+    batch(() => {
+        dispatch(updateBoard(nextBoard))
+        dispatch(incrementScore(board.score, numAlive))
+    })
+    if (numAlive === 0) {
+        dispatch(startStop(true))
+    }
 }
