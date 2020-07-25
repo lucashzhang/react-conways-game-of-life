@@ -24,14 +24,7 @@ export const updateGridSize = gridSize => {
 
 export const randomFillBoard = () => (dispatch, getState) => {
     let gridSize = getState().board.gridSize;
-    let arraySize = gridSize * gridSize;
-    let newBoard = new Array(arraySize).fill(false);
-    let numberFilled = Math.floor(Math.random() * (arraySize - gridSize * 3 + 1) + gridSize * 2)
-
-    for (let i = 0; i < numberFilled; i++) {
-        let j = Math.floor(Math.random() * arraySize);
-        newBoard[j] = true;
-    }
+    let newBoard = new Array(gridSize).fill(new Array(gridSize).fill(false));
 
     batch(() => {
         dispatch(startStop(true))
@@ -42,8 +35,7 @@ export const randomFillBoard = () => (dispatch, getState) => {
 
 export const clearBoard = () => (dispatch, getState) => {
     let gridSize = getState().board.gridSize;
-    let arraySize = gridSize * gridSize;
-    let newBoard = new Array(arraySize).fill(false);
+    let newBoard = new Array(gridSize).fill(new Array(gridSize).fill(false));
 
     // replaces current board with an empty board, stops game
     batch(() => {
@@ -55,13 +47,9 @@ export const clearBoard = () => (dispatch, getState) => {
 }
 
 export const handleGridSlider = gridSize => dispatch => {
-    let newBoard = new Array(gridSize * gridSize).fill(false);
 
-    batch(() => {
-        dispatch(updateGridSize(gridSize))
-        dispatch(updateBoard(newBoard))
-        dispatch(updateScore(0))
-    })
+    dispatch(updateGridSize(gridSize))
+    dispatch(clearBoard())
 }
 
 export const toggleTorus = isTorus => {
@@ -148,9 +136,9 @@ export const handlePatternDelete = date => (dispatch, getState) => {
     }
 }
 
-export const handleTileClick = index => (dispatch, getState) => {
-    let newBoard = [...getState().board.boardTiles];
-    newBoard[index] = !newBoard[index];
+export const handleTileClick = (x, y) => (dispatch, getState) => {
+    let newBoard = getState().board.boardTiles.map((row) => row.slice())
+    newBoard[y][x] = !newBoard[y][x];
     batch(() => {
         dispatch(updateBoard(newBoard));
         dispatch(startStop(true));

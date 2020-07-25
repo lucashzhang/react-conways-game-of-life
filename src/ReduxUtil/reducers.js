@@ -10,7 +10,7 @@ export const startstop = (state = false, action) => {
     }
 }
 
-export const boardTiles = (state = new Array(100).fill(false), action) => {
+export const boardTiles = (state = new Array(10).fill(new Array(10).fill(false)), action) => {
     switch (action.type) {
         case C.UPDATE_BOARD:
             return action.payload;

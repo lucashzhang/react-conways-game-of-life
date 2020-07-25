@@ -71,31 +71,32 @@ class Board extends React.Component {
         this.squareHeight = (this.gridHeight * 0.9);
     }
 
-    updateCanvas(idx = null) {
+    updateCanvas(x = null, y = null) {
         const ctx = this.canvasRef.current.getContext('2d');
         ctx.clearRect(0, 0, this.canvasRef.current.width, this.canvasRef.current.height);
 
-        this.props.board.forEach((tile, i) => {
-            ctx.fillStyle = tile || (idx != null && idx === i) ? "#4A473E" : "#B3AE99";
-            ctx.fillRect((i % this.props.gridSize) * this.gridHeight, Math.floor(i / this.props.gridSize) * this.gridHeight, this.squareHeight, this.squareHeight);
+        this.props.board.forEach((row, i) => {
+            row.forEach((tile, j) => {
+                ctx.fillStyle = tile || (y === i && x === j) ? "#4A473E" : "#B3AE99";
+                ctx.fillRect(j * this.gridHeight, i * this.gridHeight, this.squareHeight, this.squareHeight);
+            })
         });
     }
 
     calcIndex(e) {
-        let xCoord = Math.floor((e.clientX - e.target.offsetLeft) / this.gridHeight);
-        let yCoord = Math.floor((e.clientY - e.target.offsetTop) / this.gridHeight);
-        return xCoord + yCoord * this.props.gridSize;
+        let x = Math.floor((e.clientX - e.target.offsetLeft) / this.gridHeight);
+        let y = Math.floor((e.clientY - e.target.offsetTop) / this.gridHeight);
+        return {x, y}
     }
 
     handleHover(e) {
-        let i = this.calcIndex(e)
-
-        this.updateCanvas(i);
+        let {x, y} = this.calcIndex(e)
+        this.updateCanvas(x, y);
     }
 
     async handleClick(e) {
-        let i = this.calcIndex(e)
-        await this.props.handleTileClick(i)
+        let {x, y} = this.calcIndex(e)
+        await this.props.handleTileClick(x, y)
 
         this.updateCanvas();
     }
@@ -135,9 +136,9 @@ const mapDispatchToProps = dispatch => {
                 incrementScore(oldScore, numAlive)
             )
         },
-        handleTileClick(index) {
+        handleTileClick(x, y) {
             dispatch(
-                handleTileClick(index)
+                handleTileClick(x, y)
             )
         },
         toggleRunning(isRunning) {
