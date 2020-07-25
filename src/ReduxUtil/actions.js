@@ -24,7 +24,16 @@ export const updateGridSize = gridSize => {
 
 export const randomFillBoard = () => (dispatch, getState) => {
     let gridSize = getState().board.gridSize;
-    let newBoard = new Array(gridSize).fill(new Array(gridSize).fill(false));
+    let newBoard = new Array(gridSize).fill(false).map(() => new Array(gridSize).fill(false));
+
+    let numberToFill = Math.floor(Math.random() * (gridSize * gridSize - 6 * gridSize) + 5 * gridSize)
+
+    for (let i = 0; i < numberToFill; i++) {
+        let x = Math.floor(Math.random() * gridSize);
+        let y = Math.floor(Math.random() * gridSize);
+
+        newBoard[x][y] = true;
+    }
 
     batch(() => {
         dispatch(startStop(true))
@@ -35,7 +44,7 @@ export const randomFillBoard = () => (dispatch, getState) => {
 
 export const clearBoard = () => (dispatch, getState) => {
     let gridSize = getState().board.gridSize;
-    let newBoard = new Array(gridSize).fill(new Array(gridSize).fill(false));
+    let newBoard = new Array(gridSize).fill(false).map(() => new Array(gridSize).fill(false));
 
     // replaces current board with an empty board, stops game
     batch(() => {
