@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateBoard, startStop, handleTileClick, handleBoardTick, savePattern } from '../ReduxUtil/actions';
-import updateGame from '../GameUtil';
+import { handleTileClick, handleBoardTick, savePattern } from '../ReduxUtil/actions';
 import '../CSS/Board.css';
 
 class Board extends React.Component {
@@ -106,11 +105,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateBoard(board) {
-            dispatch(
-                updateBoard(board)
-            )
-        },
         handleTileClick(x, y) {
             dispatch(
                 handleTileClick(x, y)
