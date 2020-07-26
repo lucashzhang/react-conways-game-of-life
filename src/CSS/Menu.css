@@ -3,6 +3,7 @@
     height: 75vh;
     width: 50vh;
     margin: 0 20px 0 20px;
+    overflow-x: hidden;
 }
 
 .lucas-menu-buttons {
@@ -45,6 +46,7 @@
     background-color: #B3AE99;
     color: #4A473E;
     max-height: 30vh;
+    /* max-height: 253px; */
     overflow-y: auto;
 }
 
@@ -101,6 +103,7 @@
     margin-top: 8px;
     overflow-y: auto;
     max-height: 20vh;
+    /* max-height: 180px; */
 }
 
 /* .lucas-menu-patterns .MuiRadio-colorSecondary.Mui-checked {
