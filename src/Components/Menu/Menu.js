@@ -33,18 +33,20 @@ class Menu extends React.Component {
         return <div className="lucas-menu">
             {/* <MenuScore className="lucas-menu-score"></MenuScore> */}
             <MenuButtons className="lucas-menu-buttons"></MenuButtons>
-            <Accordion square expanded={this.state.expanded === 'instructions'} onChange={this.handleAccordion('instructions')}>
-                <AccordionSummary>Instructions</AccordionSummary>
-                <AccordionDetails><MenuInstructions /></AccordionDetails>
-            </Accordion>
-            <Accordion square expanded={this.state.expanded === 'settings'} onChange={this.handleAccordion('settings')}>
-                <AccordionSummary>Settings</AccordionSummary>
-                <AccordionDetails><MenuSettings className="lucas-menu-settings" /></AccordionDetails>
-            </Accordion>
-            <Accordion square expanded={this.state.expanded === 'patterns'} onChange={this.handleAccordion('patterns')}>
-                <AccordionSummary>Previous Patterns</AccordionSummary>
-                <AccordionDetails><MenuPatterns className="lucas-menu-patterns" /></AccordionDetails>
-            </Accordion>
+            <div className="lucas-menu-accordion-wrapper">
+                <Accordion square expanded={this.state.expanded === 'instructions'} onChange={this.handleAccordion('instructions')}>
+                    <AccordionSummary>Instructions</AccordionSummary>
+                    <AccordionDetails><MenuInstructions /></AccordionDetails>
+                </Accordion>
+                <Accordion square expanded={this.state.expanded === 'settings'} onChange={this.handleAccordion('settings')}>
+                    <AccordionSummary>Settings</AccordionSummary>
+                    <AccordionDetails><MenuSettings className="lucas-menu-settings" /></AccordionDetails>
+                </Accordion>
+                <Accordion square expanded={this.state.expanded === 'patterns'} onChange={this.handleAccordion('patterns')}>
+                    <AccordionSummary>Previous Patterns</AccordionSummary>
+                    <AccordionDetails><MenuPatterns className="lucas-menu-patterns" /></AccordionDetails>
+                </Accordion>
+            </div>
         </div>
     }
 }
