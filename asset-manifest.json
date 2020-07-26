@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/react-conways-game-of-life/static/css/main.15657f34.chunk.css",
-    "main.js": "/react-conways-game-of-life/static/js/main.b01b6f2c.chunk.js",
-    "main.js.map": "/react-conways-game-of-life/static/js/main.b01b6f2c.chunk.js.map",
+    "main.css": "/react-conways-game-of-life/static/css/main.3c5b037f.chunk.css",
+    "main.js": "/react-conways-game-of-life/static/js/main.8f14c96b.chunk.js",
+    "main.js.map": "/react-conways-game-of-life/static/js/main.8f14c96b.chunk.js.map",
     "runtime-main.js": "/react-conways-game-of-life/static/js/runtime-main.0a5a7789.js",
     "runtime-main.js.map": "/react-conways-game-of-life/static/js/runtime-main.0a5a7789.js.map",
     "static/js/2.392504e2.chunk.js": "/react-conways-game-of-life/static/js/2.392504e2.chunk.js",
     "static/js/2.392504e2.chunk.js.map": "/react-conways-game-of-life/static/js/2.392504e2.chunk.js.map",
     "index.html": "/react-conways-game-of-life/index.html",
-    "precache-manifest.708890d794ff6a3836e5f1ae9a1a05fa.js": "/react-conways-game-of-life/precache-manifest.708890d794ff6a3836e5f1ae9a1a05fa.js",
+    "precache-manifest.77b29ab26decb74659a52f4fe720b09e.js": "/react-conways-game-of-life/precache-manifest.77b29ab26decb74659a52f4fe720b09e.js",
     "service-worker.js": "/react-conways-game-of-life/service-worker.js",
-    "static/css/main.15657f34.chunk.css.map": "/react-conways-game-of-life/static/css/main.15657f34.chunk.css.map",
+    "static/css/main.3c5b037f.chunk.css.map": "/react-conways-game-of-life/static/css/main.3c5b037f.chunk.css.map",
     "static/js/2.392504e2.chunk.js.LICENSE.txt": "/react-conways-game-of-life/static/js/2.392504e2.chunk.js.LICENSE.txt",
     "static/media/App.css": "/react-conways-game-of-life/static/media/yorha.839d995e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.0a5a7789.js",
     "static/js/2.392504e2.chunk.js",
-    "static/css/main.15657f34.chunk.css",
-    "static/js/main.b01b6f2c.chunk.js"
+    "static/css/main.3c5b037f.chunk.css",
+    "static/js/main.8f14c96b.chunk.js"
   ]
 }
