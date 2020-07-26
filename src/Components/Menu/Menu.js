@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import MenuButtons from './MenuButtons';
 import MenuSettings from './MenuSettings';
-import MenuScore from './MenuScore';
+// import MenuScore from './MenuScore';
 import MenuPatterns from './MenuPatterns';
 import MenuInstructions from './MenuInstructions';
 import '../../CSS/Menu.css';
@@ -21,7 +21,7 @@ class Menu extends React.Component {
             this.setState({
                 expanded: panel
             })
-        } 
+        }
         else {
             this.setState({
                 expanded: false
@@ -31,20 +31,20 @@ class Menu extends React.Component {
 
     render() {
         return <div className="lucas-menu">
-            <MenuScore className="lucas-menu-score"></MenuScore>
+            {/* <MenuScore className="lucas-menu-score"></MenuScore> */}
+            <MenuButtons className="lucas-menu-buttons"></MenuButtons>
             <Accordion square expanded={this.state.expanded === 'instructions'} onChange={this.handleAccordion('instructions')}>
                 <AccordionSummary>Instructions</AccordionSummary>
-                <AccordionDetails><MenuInstructions/></AccordionDetails>
+                <AccordionDetails><MenuInstructions /></AccordionDetails>
             </Accordion>
             <Accordion square expanded={this.state.expanded === 'settings'} onChange={this.handleAccordion('settings')}>
                 <AccordionSummary>Settings</AccordionSummary>
-                <AccordionDetails><MenuSettings className="lucas-menu-settings"/></AccordionDetails>
+                <AccordionDetails><MenuSettings className="lucas-menu-settings" /></AccordionDetails>
             </Accordion>
             <Accordion square expanded={this.state.expanded === 'patterns'} onChange={this.handleAccordion('patterns')}>
                 <AccordionSummary>Previous Patterns</AccordionSummary>
-                <AccordionDetails><MenuPatterns className="lucas-menu-patterns"/></AccordionDetails>
+                <AccordionDetails><MenuPatterns className="lucas-menu-patterns" /></AccordionDetails>
             </Accordion>
-            <MenuButtons className="lucas-menu-buttons"></MenuButtons>
         </div>
     }
 }
@@ -52,13 +52,13 @@ class Menu extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        
+
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        
+
     }
 }
 

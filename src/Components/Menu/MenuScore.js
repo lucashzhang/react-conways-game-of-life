@@ -5,8 +5,7 @@ import '../../CSS/Menu.css';
 class MenuScore extends React.Component {
     render() {
         return <div className={this.props.className}>
-            <h4>Score:</h4>
-            <h1>{this.props.score < 9999999 ? this.props.score : this.props.score.toExponential(7)}</h1>
+            <h1>Score: {this.props.score < 9999999 ? this.props.score : this.props.score.toExponential(7)}</h1>
         </div>
     }
 }

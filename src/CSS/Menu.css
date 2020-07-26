@@ -6,15 +6,17 @@
 }
 
 .lucas-menu-buttons {
-    position: absolute;
+    /* position: absolute; */
+    /* bottom: 6px; */
     display: flex;
     justify-content: center;
-    bottom: 6px;
     width: 100%;
+    height: 20vh;
 }
 
 .lucas-menu-buttons .MuiButton-root {
     width: 19vh;
+    height: 4rem;
     /* background-color: #4A473E; */
     color: white;
     border-radius: 0px;
@@ -26,6 +28,7 @@
 } */
 
 .lucas-menu-settings {
+    padding-top: 16px;
     width: 100%;
 }
 
@@ -41,7 +44,7 @@
 .lucas-menu .MuiAccordionDetails-root {
     background-color: #B3AE99;
     color: #4A473E;
-    max-height: 253px;
+    max-height: 30vh;
     overflow-y: auto;
 }
 
@@ -97,7 +100,7 @@
 .lucas-menu-saved-patterns {
     margin-top: 8px;
     overflow-y: auto;
-    max-height: 180px;
+    max-height: 20vh;
 }
 
 /* .lucas-menu-patterns .MuiRadio-colorSecondary.Mui-checked {
