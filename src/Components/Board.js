@@ -9,7 +9,8 @@ class Board extends React.Component {
         super(props);
         this.state = {
             interval: null,
-            board: this.props.board
+            board: this.props.board,
+            dimension: 75 * window.innerHeight / 100
         }
         this.canvasRef = React.createRef();
         this.gridHeight = 0;
@@ -17,6 +18,18 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
+        this.updateDimension()
+        window.addEventListener('resize', this.updateDimension)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', () => this.updateDimension())
+    }
+
+    updateDimension = () => {
+        this.setState({
+            dimension: 75 * window.innerHeight / 100
+        });
         this.setGridDimensions();
         this.updateCanvas();
     }
@@ -66,16 +79,16 @@ class Board extends React.Component {
     calcIndex(e) {
         let x = Math.floor((e.clientX - e.target.offsetLeft) / this.gridHeight);
         let y = Math.floor((e.clientY - e.target.offsetTop) / this.gridHeight);
-        return {x, y}
+        return { x, y }
     }
 
     handleHover(e) {
-        let {x, y} = this.calcIndex(e)
+        let { x, y } = this.calcIndex(e)
         this.updateCanvas(x, y);
     }
 
     async handleClick(e) {
-        let {x, y} = this.calcIndex(e)
+        let { x, y } = this.calcIndex(e)
         await this.props.handleTileClick(x, y)
 
         this.updateCanvas();
@@ -88,8 +101,8 @@ class Board extends React.Component {
             onClick={(e) => this.handleClick(e)}
             onMouseLeave={() => this.updateCanvas()}
             ref={this.canvasRef}
-            width={700}
-            height={700}
+            width={this.state.dimension}
+            height={this.state.dimension}
         />
     }
 }

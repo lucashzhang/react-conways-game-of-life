@@ -6,9 +6,6 @@ import { handlePatternDelete, handleRadio, savePattern } from '../../ReduxUtil/a
 import '../../CSS/Menu.css';
 
 class MenuSettings extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleSave = () => {
         this.props.savePattern();
@@ -16,16 +13,17 @@ class MenuSettings extends React.Component {
 
     render() {
         return <div className={this.props.className} onMouseOut={this.resetPattern}>
-            <Button variant="contained" fullWidth onClick={this.handleSave}>Save Current Pattern</Button>
+            <Button variant="contained" color="primary" fullWidth onClick={this.handleSave}>Save Current Pattern</Button>
             <div className="lucas-menu-saved-patterns">
                 {this.props.history.map((pattern) => (
                     <div className="lucas-menu-options" key={pattern.date.toString()}>
                         <Radio
                             checked={this.props.currPattern === pattern.date.toString()}
+                            color="primary"
                             onChange={() => this.props.handleRadioChange(pattern)}
                         ></Radio>
                         <h4>{pattern.date.toString().slice(0, -33)}</h4>
-                        <IconButton className="lucas-menu-control" onClick={() => this.props.handlePatternDelete(pattern.date)}><DeleteIcon></DeleteIcon></IconButton>
+                        <IconButton className="lucas-menu-control" color="primary" onClick={() => this.props.handlePatternDelete(pattern.date)}><DeleteIcon></DeleteIcon></IconButton>
                     </div>
                 ))}
             </div>

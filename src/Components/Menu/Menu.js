@@ -5,6 +5,7 @@ import MenuButtons from './MenuButtons';
 import MenuSettings from './MenuSettings';
 import MenuScore from './MenuScore';
 import MenuPatterns from './MenuPatterns';
+import MenuInstructions from './MenuInstructions';
 import '../../CSS/Menu.css';
 
 class Menu extends React.Component {
@@ -32,15 +33,15 @@ class Menu extends React.Component {
             <MenuScore className="lucas-menu-score"></MenuScore>
             <Accordion square expanded={this.state.expanded === 'instructions'} onChange={this.handleAccordion('instructions')}>
                 <AccordionSummary>Instructions</AccordionSummary>
-                <AccordionDetails>lorem ipsum dolors</AccordionDetails>
+                <AccordionDetails><MenuInstructions/></AccordionDetails>
             </Accordion>
             <Accordion square expanded={this.state.expanded === 'settings'} onChange={this.handleAccordion('settings')}>
                 <AccordionSummary>Settings</AccordionSummary>
-                <AccordionDetails><MenuSettings className="lucas-menu-settings"></MenuSettings></AccordionDetails>
+                <AccordionDetails><MenuSettings className="lucas-menu-settings"/></AccordionDetails>
             </Accordion>
             <Accordion square expanded={this.state.expanded === 'patterns'} onChange={this.handleAccordion('patterns')}>
                 <AccordionSummary>Previous Patterns</AccordionSummary>
-                <AccordionDetails><MenuPatterns className="lucas-menu-patterns"></MenuPatterns></AccordionDetails>
+                <AccordionDetails><MenuPatterns className="lucas-menu-patterns"/></AccordionDetails>
             </Accordion>
             <MenuButtons className="lucas-menu-buttons"></MenuButtons>
         </div>

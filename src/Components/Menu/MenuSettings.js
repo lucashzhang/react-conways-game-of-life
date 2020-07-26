@@ -40,7 +40,7 @@ class MenuSettings extends React.Component {
             <div className="lucas-menu-options">
                 <p>Torus Mode</p>
                 <Switch
-                    color="default"
+                    color="primary"
                     className="lucas-menu-control"
                     checked={this.props.isTorus}
                     onClick={() => this.props.handleTorus(this.props.isTorus)}
