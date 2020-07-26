@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/react-conways-game-of-life/static/css/main.d579f610.chunk.css",
-    "main.js": "/react-conways-game-of-life/static/js/main.2996ba25.chunk.js",
-    "main.js.map": "/react-conways-game-of-life/static/js/main.2996ba25.chunk.js.map",
+    "main.css": "/react-conways-game-of-life/static/css/main.15657f34.chunk.css",
+    "main.js": "/react-conways-game-of-life/static/js/main.b01b6f2c.chunk.js",
+    "main.js.map": "/react-conways-game-of-life/static/js/main.b01b6f2c.chunk.js.map",
     "runtime-main.js": "/react-conways-game-of-life/static/js/runtime-main.0a5a7789.js",
     "runtime-main.js.map": "/react-conways-game-of-life/static/js/runtime-main.0a5a7789.js.map",
-    "static/js/2.9f80503a.chunk.js": "/react-conways-game-of-life/static/js/2.9f80503a.chunk.js",
-    "static/js/2.9f80503a.chunk.js.map": "/react-conways-game-of-life/static/js/2.9f80503a.chunk.js.map",
+    "static/js/2.392504e2.chunk.js": "/react-conways-game-of-life/static/js/2.392504e2.chunk.js",
+    "static/js/2.392504e2.chunk.js.map": "/react-conways-game-of-life/static/js/2.392504e2.chunk.js.map",
     "index.html": "/react-conways-game-of-life/index.html",
-    "precache-manifest.fa0936ccd7dd2fc9a5862bfeb212a89d.js": "/react-conways-game-of-life/precache-manifest.fa0936ccd7dd2fc9a5862bfeb212a89d.js",
+    "precache-manifest.708890d794ff6a3836e5f1ae9a1a05fa.js": "/react-conways-game-of-life/precache-manifest.708890d794ff6a3836e5f1ae9a1a05fa.js",
     "service-worker.js": "/react-conways-game-of-life/service-worker.js",
-    "static/css/main.d579f610.chunk.css.map": "/react-conways-game-of-life/static/css/main.d579f610.chunk.css.map",
-    "static/js/2.9f80503a.chunk.js.LICENSE.txt": "/react-conways-game-of-life/static/js/2.9f80503a.chunk.js.LICENSE.txt",
+    "static/css/main.15657f34.chunk.css.map": "/react-conways-game-of-life/static/css/main.15657f34.chunk.css.map",
+    "static/js/2.392504e2.chunk.js.LICENSE.txt": "/react-conways-game-of-life/static/js/2.392504e2.chunk.js.LICENSE.txt",
     "static/media/App.css": "/react-conways-game-of-life/static/media/yorha.839d995e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.0a5a7789.js",
-    "static/js/2.9f80503a.chunk.js",
-    "static/css/main.d579f610.chunk.css",
-    "static/js/main.2996ba25.chunk.js"
+    "static/js/2.392504e2.chunk.js",
+    "static/css/main.15657f34.chunk.css",
+    "static/js/main.b01b6f2c.chunk.js"
   ]
 }
