@@ -21,7 +21,8 @@ class Menu extends React.Component {
             this.setState({
                 expanded: panel
             })
-        } else {
+        } 
+        else {
             this.setState({
                 expanded: false
             })

@@ -34,9 +34,9 @@
     color: white
 }
 
-/* .lucas-menu .MuiAccordionSummary-root:focus {
-    background-color: #6A675E;
-} */
+.lucas-menu .MuiAccordionSummary-root:focus {
+    background-color: #5A574E;
+}
 
 .lucas-menu .MuiAccordionDetails-root {
     background-color: #B3AE99;
